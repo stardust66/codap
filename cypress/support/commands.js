@@ -78,19 +78,19 @@ Cypress.Commands.add('dragAttributeToTarget', (source, attribute, target,num=0)=
         break
     case ('card') :
         source_el=el.caseCardHeader;
-        break   
+        break
     case ('x1') :
         source_el=el.x_axis;
-        break 
+        break
     case ('x') :
         source_el=el.x_axis_label;
         break
     case ('y1') :
         source_el=el.y_axis;
-        break     
+        break
     case ('y') :
         source_el=el.y_axis_label;
-        break     
+        break
   }
 
   switch(target) {
@@ -102,31 +102,31 @@ Cypress.Commands.add('dragAttributeToTarget', (source, attribute, target,num=0)=
         break
     case ('card collection') :
         target_el=el.caseCardCollectionDropZone;
-        break               
+        break
     case ('graph_legend') :
         target_el=el.graphTile;
-        break  
+        break
     case ('map') :
         target_el=el.mapTile;
-        break  
+        break
     case ('x1') :
         target_el=el.x_axis;
-        break          
+        break
     case ('x') :
         target_el=el.x_axis_label;
         break
     case ('y1') :
         target_el=el.y_axis;
-        break      
+        break
     case ('y') :
         target_el=el.y_axis_label;
         break
     case('newCollection'):
         target_el=el.newCollection;
-        break        
+        break
   }
   cy.get(source_el).contains(attribute)
-      .trigger('mousedown', {which:1},{dt})
+      .trigger('mousedown',{force:true}, {which:1},{dt})
       .trigger('dragstart', {dt})
   cy.get(target_el).eq(num)
       .trigger('mousemove',{force:true}, {which:1},{dt})
