@@ -335,6 +335,20 @@ DG.appController = SC.Object.create((function () // closure
           id: 'dg-pluginMenuItem-' + pluginData.title.replace(/ /g, '-')
         };
       }): [];
+      items.push({
+        localize: true,
+        title: "CODAP Flow",
+        url: "http://localhost:3000",
+        target: this,
+        toolTip: "Immutable, reactive transformations for CODAP datasets",
+        dgAction: "openPlugin",
+        dimensions: {
+          width: 300,
+          height: 320,
+        },
+        icon: "tile-icon-mediaTool",
+        id: "dg-pluginMenuItem-CODAP-flow",
+      });
       return items;
     }.property(),
 
