@@ -423,6 +423,32 @@ DG.DataInteractivePhoneHandler = SC.Object.extend(
       },
       handleOneCommand: function (iCmd) {
         var result = {success: false};
+
+        if (iCmd.resource === "evalExpression") {
+          try {
+            return {
+              success: true,
+              values: iCmd.values.records.map(r => {
+                const context = DG.FormulaContext.create({
+                  vars: r,
+                });
+                const formula = DG.Formula.create({
+                  source: iCmd.values.source,
+                  context: context,
+                });
+                return formula.evaluateDirect();
+              }),
+            }
+          } catch (ex) {
+            return {
+              success: false,
+              values: {
+                error: ex.toString(),
+              },
+            };
+          }
+        }
+
         try {
           // parse the resource name into constituent parts
           var selectorMap = iCmd.resource && this.parseResourceSelector(
