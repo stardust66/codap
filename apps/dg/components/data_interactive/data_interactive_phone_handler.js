@@ -428,17 +428,17 @@ DG.DataInteractivePhoneHandler = SC.Object.extend(
           try {
             return {
               success: true,
-              values: iCmd.values.records.map(r => {
-                const context = DG.FormulaContext.create({
+              values: iCmd.values.records.map(function(r) {
+                var context = DG.FormulaContext.create({
                   vars: r,
                 });
-                const formula = DG.Formula.create({
+                var formula = DG.Formula.create({
                   source: iCmd.values.source,
                   context: context,
                 });
                 return formula.evaluateDirect();
               }),
-            }
+            };
           } catch (ex) {
             return {
               success: false,
