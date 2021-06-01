@@ -449,6 +449,13 @@ DG.DataInteractivePhoneHandler = SC.Object.extend(
           }
         }
 
+        if (iCmd.resource === "functionNames") {
+          return {
+            success: true,
+            values: DG.functionRegistry.get("namesArray"),
+          };
+        }
+
         try {
           // parse the resource name into constituent parts
           var selectorMap = iCmd.resource && this.parseResourceSelector(
